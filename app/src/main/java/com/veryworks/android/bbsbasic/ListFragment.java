@@ -80,7 +80,6 @@ public class ListFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onResume() {
         super.onResume();
-        refreshAdapter();
     }
 
     @Override
@@ -100,6 +99,8 @@ public class ListFragment extends Fragment implements View.OnClickListener{
     }
 
     public void refreshAdapter() {
+        listAdapter = new ListAdapter(context, datas);
+        recyclerView.setAdapter(listAdapter);
         listAdapter.notifyDataSetChanged();
     }
 

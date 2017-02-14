@@ -91,7 +91,8 @@ public class MainActivity extends AppCompatActivity implements ListInterface, De
         memoDao = dbHelper.getMemoDao();
         memoDao.create(memo);
         loadData();
-
+        list.setData(datas);
         super.onBackPressed();
+        list.refreshAdapter();
     }
 }
