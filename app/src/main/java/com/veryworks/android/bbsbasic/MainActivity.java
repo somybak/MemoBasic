@@ -1,10 +1,14 @@
 package com.veryworks.android.bbsbasic;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.j256.ormlite.android.apptools.OpenHelperManager;
@@ -31,6 +35,10 @@ public class MainActivity extends AppCompatActivity implements ListInterface, De
     List<Memo> datas = new ArrayList<>();
     Dao<Memo, Integer> memoDao;
 
+    FragmentManager fm ;
+
+    Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements ListInterface, De
 
         list = ListFragment.newInstance(1);
         detail = DetailFragment.newInstance();
+
         main = (FrameLayout) findViewById(R.id.activity_main);
         manager = getSupportFragmentManager();
         try {
@@ -48,6 +57,9 @@ public class MainActivity extends AppCompatActivity implements ListInterface, De
 
         list.setData(datas);
         setList();
+
+        fm = getSupportFragmentManager();
+
     }
 
     public void loadData() throws SQLException {
@@ -67,15 +79,22 @@ public class MainActivity extends AppCompatActivity implements ListInterface, De
     @Override
     public void goDetail(){
         FragmentTransaction transaction = manager.beginTransaction();
+        detail.setPos(-1);
         transaction.add(R.id.activity_main, detail);
         transaction.addToBackStack(null);
         transaction.commit();
     }
 
     @Override
-    public void goDetail(int position) {
+    public void goDetail(int getId) {
+        FragmentTransaction transaction = manager.beginTransaction();
+        detail.setPos(getId);
+        transaction.add(R.id.activity_main, detail);
+        transaction.addToBackStack(null);
 
+        transaction.commit();
     }
+
 
     @Override
     public void backToList() {
@@ -92,7 +111,11 @@ public class MainActivity extends AppCompatActivity implements ListInterface, De
         memoDao.create(memo);
         loadData();
         list.setData(datas);
+
+
         super.onBackPressed();
         list.refreshAdapter();
     }
+
+
 }

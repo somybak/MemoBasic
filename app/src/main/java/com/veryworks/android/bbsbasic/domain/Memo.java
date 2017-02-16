@@ -44,6 +44,7 @@ public class Memo {
     }
 
     public void setMemo(String memo) {
+
         this.memo = memo;
     }
 

@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 
 import com.veryworks.android.bbsbasic.domain.Memo;
@@ -21,6 +22,8 @@ import java.util.List;
 public class ListFragment extends Fragment implements View.OnClickListener{
 
     private static final String ARG_COLUMN_COUNT = "column-count";
+    private static final int NEW_MEMO = 100;
+
     private int mColumnCount = 1;
     private List<Memo> datas = new ArrayList<>();
 
@@ -31,6 +34,8 @@ public class ListFragment extends Fragment implements View.OnClickListener{
     RecyclerView recyclerView;
     ListAdapter listAdapter;
     Button btnPlus;
+    private AdapterView.OnItemClickListener mListener;
+
 
     public ListFragment() {
     }
@@ -91,10 +96,12 @@ public class ListFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onDetach() {
+
         super.onDetach();
     }
 
     public void setData(List<Memo> datas){
+
         this.datas = datas;
     }
 
@@ -108,8 +115,14 @@ public class ListFragment extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnPlus:
-                listInterface.goDetail();
+                // call db
+//                if(position!=null){
+//                    listInterface.goDetail(position);
+//                } else {
+                    listInterface.goDetail(NEW_MEMO);
+ //               }
                 break;
+
         }
     }
 }

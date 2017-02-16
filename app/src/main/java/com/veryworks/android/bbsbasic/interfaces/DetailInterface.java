@@ -11,4 +11,6 @@ import java.sql.SQLException;
 public interface DetailInterface {
     public void backToList();
     public void saveToList(Memo memo) throws SQLException;
+
+
 }
