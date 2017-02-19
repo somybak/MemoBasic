@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,22 +18,58 @@
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:inputType="textPersonName"
+        android:layout_height="wrap_content"
+
         android:ems="10"
         android:layout_below="@+id/btnSave"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/editMemo"
+        android:lines="8"
+        android:inputType="textMultiLine"
         android:gravity="top"
-        android:hint="Input your memo" />
 
-    <Button
-        android:text="Cancel"
+        android:hint="Write your memo"
+        android:singleLine="false" />
+
+    <!---->
+    <!--android:minLines="6"-->
+    <!--android:maxLines="10"-->
+
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_camera"
+        android:id="@+id/imageButton"
+        android:layout_below="@+id/btnSave"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:id="@+id/imageView2"
+        android:layout_below="@+id/editMemo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="BACK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnCancel"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="DELETE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnDelete"
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/btnSave"
-        android:layout_toStartOf="@+id/btnSave"
-        android:id="@+id/btnCancel" />
+        android:layout_toStartOf="@+id/btnSave" />
+
 </RelativeLayout>
